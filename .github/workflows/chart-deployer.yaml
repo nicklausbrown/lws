@@ -29,10 +29,10 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
-        uses: azure/setup-helm@v3
+        uses: azure/setup-helm@v4
 
       - name: Run chart-releaser
-        uses: nicklausbrown/chart-releaser-action@1.5.1
+        uses: helm/chart-releaser-action@v1.6.0
         with:
           packages_with_index: true
         env:
