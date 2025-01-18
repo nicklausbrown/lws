@@ -1,0 +1,39 @@
+name: Deploy Helm Chart
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'charts/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Helm Lint
+        run: |
+          helm lint charts/lws
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Run chart-releaser
+        uses: nicklausbrown/chart-releaser-action@1.5.1
+        with:
+          packages_with_index: true
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
