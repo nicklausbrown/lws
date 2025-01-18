@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  lws:
+  - apiVersion: v2
+    appVersion: v0.5.0
+    created: "2025-01-18T23:28:09.022933885Z"
+    description: A Helm chart for Kubernetes
+    digest: 2b4d5b8d86aa6820b15aa92562db99a0ba26bf4982ef64bff7573452eec26975
+    name: lws
+    type: application
+    urls:
+    - lws-0.5.1.tgz
+    version: 0.5.1
+generated: "2025-01-18T23:28:09.022942451Z"
